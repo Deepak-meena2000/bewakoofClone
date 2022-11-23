@@ -1,6 +1,6 @@
 import {Link, useUrl, useCart} from '@shopify/hydrogen';
 import {useWindowScroll} from 'react-use';
-
+import bewkoofImage from '../../assets/bewakoof.svg';
 import {
   Heading,
   IconAccount,
@@ -160,14 +160,14 @@ function DesktopHeader({
         : 'bg-contrast/80 text-primary'
     } ${
       y > 50 && !isHome ? 'shadow-lightHeader ' : ''
-    }hidden h-nav lg:flex items-center sticky transition duration-300 backdrop-blur-lg z-40 top-0 justify-between w-full leading-none gap-8 px-12 py-8`,
+    }hidden h-8 lg:flex items-center sticky transition duration-300 backdrop-blur-lg z-40 top-0 justify-between w-full leading-none gap-8 pl-64 pr-64 py-8`,
   };
 
   return (
     <header role="banner" className={styles.container}>
       <div className="flex gap-12">
         <Link className={`font-bold`} to="/">
-          {title}
+          <img src={bewkoofImage} alt="bewakoof" width='147px'/>
         </Link>
         <nav className="flex gap-8">
           {/* Top level menu items */}
@@ -181,22 +181,23 @@ function DesktopHeader({
       <div className="flex items-center gap-1">
         <form
           action={`/${countryCode ? countryCode + '/' : ''}search`}
-          className="flex items-center gap-2"
+          className="flex items-center gap-2 w-fit "
         >
+           <button type="submit" className={styles.button}>
+            <IconSearch />
+          </button>
           <Input
             className={
               isHome
-                ? 'focus:border-contrast/20 dark:focus:border-primary/20'
-                : 'focus:border-primary/20'
+                ? 'w-96'
+                : 'w-96'
             }
             type="search"
             variant="minisearch"
-            placeholder="Search"
+            placeholder="Search by product, category or collection"
             name="q"
           />
-          <button type="submit" className={styles.button}>
-            <IconSearch />
-          </button>
+         
         </form>
         <Link to={'/account'} className={styles.button}>
           <IconAccount />

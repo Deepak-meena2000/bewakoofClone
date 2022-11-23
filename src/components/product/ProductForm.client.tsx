@@ -108,8 +108,8 @@ export function ProductForm() {
           type="button"
         >
           <Button
-            width="full"
-            variant={isOutOfStock ? 'secondary' : 'primary'}
+            width="auto"
+            variant={isOutOfStock ? 'secondary' : 'ternary'}
             as="span"
           >
             {isOutOfStock ? (
@@ -137,7 +137,6 @@ export function ProductForm() {
             )}
           </Button>
         </AddToCartButton>
-        {!isOutOfStock && <ShopPayButton variantIds={[selectedVariant.id!]} />}
       </div>
     </form>
   );

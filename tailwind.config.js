@@ -18,6 +18,7 @@ module.exports = {
         primary: withOpacityValue('--color-primary'),
         contrast: withOpacityValue('--color-contrast'),
         notice: withOpacityValue('--color-accent'),
+        primaryButton: withOpacityValue('--color-primary-button'),
         shopPay: 'var(--color-shop-pay)',
       },
       screens: {

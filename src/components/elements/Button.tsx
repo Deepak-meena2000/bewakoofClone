@@ -12,7 +12,7 @@ export function Button({
 }: {
   as?: React.ElementType;
   className?: string;
-  variant?: 'primary' | 'secondary' | 'inline';
+  variant?: 'primary' | 'secondary' | 'inline' | 'ternary';
   width?: 'auto' | 'full';
   [key: string]: any;
 }) {
@@ -20,11 +20,11 @@ export function Button({
 
   const baseButtonClasses =
     'inline-block rounded font-medium text-center py-3 px-6';
-
   const variants = {
     primary: `${baseButtonClasses} bg-primary text-contrast`,
     secondary: `${baseButtonClasses} border border-primary/10 bg-contrast text-primary`,
     inline: 'border-b border-primary/10 leading-none pb-1',
+    ternary: `${baseButtonClasses} bg-primaryButton text-primary`
   };
 
   const widths = {
