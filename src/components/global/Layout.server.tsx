@@ -1,10 +1,11 @@
 import {Suspense} from 'react';
 import {useLocalization, useShopQuery, CacheLong, gql} from '@shopify/hydrogen';
-import type {Menu, Shop} from '@shopify/hydrogen/storefront-api-types';
+import type {Collection, Menu, Shop} from '@shopify/hydrogen/storefront-api-types';
 
 import {Header} from '~/components';
 import {Footer} from '~/components/index.server';
 import {parseMenu} from '~/lib/utils';
+import { PAGINATION_SIZE } from '~/lib/const';
 
 const HEADER_MENU_HANDLE = 'main-menu';
 const FOOTER_MENU_HANDLE = 'footer';
@@ -38,8 +39,26 @@ export function Layout({children}: {children: React.ReactNode}) {
 }
 
 function HeaderWithMenu() {
+  const {
+    language: {isoCode: languageCode},
+    country: {isoCode: countryCode},
+  } = useLocalization();
   const {shopName, headerMenu} = useLayoutQuery();
-  return <Header title={shopName} menu={headerMenu} />;
+  const {data} = useShopQuery<any>({
+    query: COLLECTIONS_QUERY,
+    variables: {
+      pageBy: PAGINATION_SIZE,
+      country: countryCode,
+      language: languageCode,
+    },
+    preload: true,
+  });
+
+  const collections: Collection[] = data.collections.nodes;
+
+  return (
+    <Header title={shopName} menu={headerMenu} collections={collections} />
+  );
 }
 
 function FooterWithMenu() {
@@ -122,6 +141,34 @@ const SHOP_QUERY = gql`
         ...MenuItem
         items {
           ...MenuItem
+        }
+      }
+    }
+  }
+`;
+
+const COLLECTIONS_QUERY = gql`
+  query Collections(
+    $country: CountryCode
+    $language: LanguageCode
+    $pageBy: Int!
+  ) @inContext(country: $country, language: $language) {
+    collections(first: $pageBy) {
+      nodes {
+        id
+        title
+        description
+        handle
+        seo {
+          description
+          title
+        }
+        image {
+          id
+          url
+          width
+          height
+          altText
         }
       }
     }

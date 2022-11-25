@@ -40,7 +40,7 @@ export function Hero({
             : 'aspect-[4/5] sm:aspect-square md:aspect-[5/4] lg:aspect-[3/2] xl:aspect-[2/1]'
         }`}
       >
-        <div className="absolute inset-0 grid flex-grow grid-flow-col pointer-events-none auto-cols-fr -z-10 content-stretch overflow-clip">
+        <div className="absolute inset-0 grid flex-grow grid-flow-col pointer-events-none auto-cols-fr -z-10 content-stretch overflow-clip px-4 py-36">
           {spread?.reference && (
             <div className="">
               <SpreadMedia
@@ -62,7 +62,7 @@ export function Hero({
             </div>
           )}
           {spreadSecondary?.reference && (
-            <div className="hidden md:block">
+            <div className="hidden md:block px-6">
               <SpreadMedia
                 sizes="(min-width: 80em) 700, (min-width: 48em) 450, 500"
                 widths={[450, 700]}

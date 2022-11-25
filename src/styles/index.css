@@ -8,6 +8,7 @@
   --color-contrast: 255 255 255; /* Backgrounds, borders, etc. */
   --color-accent: 191 72 0; /* Labels like "On sale" */
   --color-primary-button:255 216 77;
+  --color-primary-search:234 234 234;
   --font-size-fine: 0.75rem; /* text-xs */
   --font-size-copy: 1rem; /* text-base */
   --font-size-lead: 1.125rem; /* text-lg */
@@ -41,6 +42,7 @@
     --color-contrast: 255 255 255;
     --color-accent: 235 86 40;
     --color-primary-button:255 216 77;
+    --color-primary-search:234 234 234;
   }
 }
 

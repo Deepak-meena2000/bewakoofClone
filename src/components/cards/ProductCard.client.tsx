@@ -83,6 +83,12 @@ export function ProductCard({
         </div>
         <div className="grid gap-1">
           <Text
+            className="w-full overflow-hidden whitespace-nowrap text-zinc-600 "
+            as="h3"
+          >
+            Bewakoof
+          </Text>
+          <Text
             className="w-full overflow-hidden whitespace-nowrap text-ellipsis "
             as="h3"
           >

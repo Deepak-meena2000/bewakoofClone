@@ -9,7 +9,7 @@ import {
 } from '@shopify/hydrogen';
 import type {Collection} from '@shopify/hydrogen/storefront-api-types';
 
-import {PageHeader, Section, Grid} from '~/components';
+import {PageHeader, Section, Grid, Header} from '~/components';
 import {Layout, CollectionCard} from '~/components/index.server';
 import {getImageLoadingPriority, PAGINATION_SIZE} from '~/lib/const';
 
@@ -51,7 +51,6 @@ function CollectionGrid() {
   });
 
   const collections: Collection[] = data.collections.nodes;
-
   return (
     <Grid items={collections.length === 3 ? 3 : 2}>
       {collections.map((collection, i) => (

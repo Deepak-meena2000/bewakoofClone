@@ -15,13 +15,13 @@ import {MenuDrawer} from './MenuDrawer.client';
 import {useDrawer} from './Drawer.client';
 
 import type {EnhancedMenu} from '~/lib/utils';
+import { Collection } from '@shopify/hydrogen/storefront-api-types';
 
 /**
  * A client component that specifies the content of the header on the website
  */
-export function Header({title, menu}: {title: string; menu?: EnhancedMenu}) {
+export function Header({title, menu,collections}: {title: string; menu?: EnhancedMenu ; collection?:Collection}) {
   const {pathname} = useUrl();
-
   const localeMatch = /^\/([a-z]{2})(\/|$)/i.exec(pathname);
   const countryCode = localeMatch ? localeMatch[1] : undefined;
 
@@ -49,6 +49,7 @@ export function Header({title, menu}: {title: string; menu?: EnhancedMenu}) {
         title={title}
         menu={menu}
         openCart={openCart}
+        collections={collections}
       />
       <MobileHeader
         countryCode={countryCode}
@@ -142,56 +143,67 @@ function DesktopHeader({
   menu,
   openCart,
   title,
+  collections
 }: {
   countryCode?: string | null;
   isHome: boolean;
   openCart: () => void;
   menu?: EnhancedMenu;
   title: string;
+  collections?: Collection
 }) {
   const {y} = useWindowScroll();
-
   const styles = {
     button:
       'relative flex items-center justify-center w-8 h-8 focus:ring-primary/5',
     container: `${
       isHome
-        ? 'bg-primary/80 dark:bg-contrast/60 text-contrast dark:text-primary shadow-darkHeader'
-        : 'bg-contrast/80 text-primary'
+        ? 'bg-contrast  text-contrast dark:text-primary shadow-darkHeader'
+        : 'bg-contrast  text-primary dark:text-primary shadow-darkHeader'
     } ${
-      y > 50 && !isHome ? 'shadow-lightHeader ' : ''
-    }hidden h-8 lg:flex items-center sticky transition duration-300 backdrop-blur-lg z-40 top-0 justify-between w-full leading-none gap-8 pl-64 pr-64 py-8`,
+      y > 50 && !isHome ? 'shadow-lightHeader ' : 'shadow-lightHeader'
+    }hidden h-8 lg:flex items-center sticky transition duration-300 backdrop-blur-lg z-40 top-0 justify-between w-full leading-none gap-8 pl-40 pr-28 pt-12 pb-12`,
+  };
+
+  const MyCollectionCard = ({collection}:{collection:Collection}) => {
+    return (<Link to={`/collections/${collection.handle}`} className="hover:border-b-4 border-primaryButton">
+      <span>
+        {collection.title}
+        </span>
+    </Link>)
   };
 
   return (
     <header role="banner" className={styles.container}>
       <div className="flex gap-12">
         <Link className={`font-bold`} to="/">
-          <img src={bewkoofImage} alt="bewakoof" width='147px'/>
+          <img src={bewkoofImage} alt="bewakoof" width='250px'/>
         </Link>
-        <nav className="flex gap-8">
+        <nav className="flex gap-4">
           {/* Top level menu items */}
-          {(menu?.items || []).map((item) => (
-            <Link key={item.id} to={item.to} target={item.target}>
+          {/* {(menu?.items || []).map((item) => (
+            <Link key={item.id} to={item.to} target={item.target} className="hover:border-b-4 border-primaryButton">
               {item.title}
             </Link>
-          ))}
+          ))}  */}
+           {collections?.map((collection, i) => (
+              <MyCollectionCard
+                collection={collection}
+              />
+            ))}
+          
         </nav>
       </div>
       <div className="flex items-center gap-1">
         <form
           action={`/${countryCode ? countryCode + '/' : ''}search`}
-          className="flex items-center gap-2 w-fit "
+          className="flex items-center gap-2 w-fit border rounded bg-ternary"
         >
            <button type="submit" className={styles.button}>
             <IconSearch />
           </button>
           <Input
-            className={
-              isHome
-                ? 'w-96'
-                : 'w-96'
-            }
+            className={isHome ? 'w-80' : 'w-80'}
             type="search"
             variant="minisearch"
             placeholder="Search by product, category or collection"

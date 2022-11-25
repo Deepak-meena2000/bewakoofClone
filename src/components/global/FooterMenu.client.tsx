@@ -22,7 +22,7 @@ export function FooterMenu({menu}: {menu?: EnhancedMenu}) {
             {/* @ts-expect-error @headlessui/react incompatibility with node16 resolution */}
             {({open}) => (
               <>
-                <Disclosure.Button className="text-left md:cursor-default">
+                <Disclosure.Button className="text-left md:cursor-default text-primaryButton">
                   <Heading className="flex justify-between" size="lead" as="h3">
                     {item.title}
                     {item?.items?.length > 0 && (
@@ -36,7 +36,7 @@ export function FooterMenu({menu}: {menu?: EnhancedMenu}) {
                   <div
                     className={`${
                       open ? `max-h-48 h-fit` : `max-h-0 md:max-h-fit`
-                    } overflow-hidden transition-all duration-300`}
+                    } overflow-hidden transition-all duration-300 `}
                   >
                     <Disclosure.Panel static>
                       <nav className={styles.nav}>

@@ -19,6 +19,7 @@ module.exports = {
         contrast: withOpacityValue('--color-contrast'),
         notice: withOpacityValue('--color-accent'),
         primaryButton: withOpacityValue('--color-primary-button'),
+        ternary: withOpacityValue(' --color-primary-search'),
         shopPay: 'var(--color-shop-pay)',
       },
       screens: {
@@ -50,6 +51,7 @@ module.exports = {
       fontFamily: {
         sans: ['Helvetica Neue', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         serif: ['"IBMPlexSerif"', 'Palatino', 'ui-serif'],
+        monstreat: ['Montserrat'],
       },
       fontSize: {
         display: ['var(--font-size-display)', '1.1'],

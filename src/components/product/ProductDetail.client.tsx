@@ -19,8 +19,8 @@ export function ProductDetail({
       {({open}) => (
         <>
           <Disclosure.Button className="text-left">
-            <div className="flex justify-between">
-              <Text size="lead" as="h4">
+            <div className="flex justify-between border-b-2">
+              <Text size="lead" as="h4" className='pb-2'>
                 {title}
               </Text>
               <IconClose
@@ -33,7 +33,7 @@ export function ProductDetail({
 
           <Disclosure.Panel className={'pb-4 pt-2 grid gap-2'}>
             <div
-              className="prose dark:prose-invert"
+              className="prose"
               dangerouslySetInnerHTML={{__html: content}}
             />
             {learnMore && (
