@@ -10,6 +10,8 @@ import {
   useRouteParams,
   useServerAnalytics,
   useShopQuery,
+  useProductOptions,
+  Money
 } from '@shopify/hydrogen';
 
 import {MEDIA_FRAGMENT} from '~/lib/fragments';
@@ -23,6 +25,8 @@ import {
   Section,
   Text,
 } from '~/components';
+
+import {ProductPrice} from '~/components/product/ProductPrice.client';
 
 export default function Product() {
   const {handle} = useRouteParams();
@@ -99,6 +103,7 @@ export default function Product() {
                     <Text className={'opacity-50 font-medium'}>{vendor}</Text>
                   )}
                 </div>
+                <ProductPrice/>
                 <ProductForm />
                 <div className="grid gap-4 py-4">
                   {descriptionHtml && (
