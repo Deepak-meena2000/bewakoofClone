@@ -35,7 +35,9 @@ export function CartEmpty({
           started!
         </Text>
         <div>
-          <Button onClick={onClose}>Continue shopping</Button>
+          <Button variant="ternary" onClick={onClose}>
+            Continue shopping
+          </Button>
         </div>
       </section>
       <section className="grid gap-8 pt-4">

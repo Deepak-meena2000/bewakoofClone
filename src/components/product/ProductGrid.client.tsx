@@ -1,9 +1,19 @@
-import {useState, useRef, useEffect, useCallback} from 'react';
+import {
+  useState,
+  useRef,
+  useEffect,
+  useCallback,
+  JSXElementConstructor,
+  ReactElement,
+  ReactFragment,
+  ReactPortal,
+} from 'react';
 import {Link, flattenConnection} from '@shopify/hydrogen';
 
-import {Button, Grid, ProductCard} from '~/components';
+import {Button, Grid, IconArrow, IconCaret, ProductCard} from '~/components';
 import {getImageLoadingPriority} from '~/lib/const';
 import type {Collection, Product} from '@shopify/hydrogen/storefront-api-types';
+import ProductFilter from './ProductFilter.client';
 
 export function ProductGrid({
   url,
@@ -82,32 +92,64 @@ export function ProductGrid({
   }
 
   return (
-    <>
-      <Grid layout="products">
-        {products.map((product, i) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-            loading={getImageLoadingPriority(i)}
-          />
-        ))}
-      </Grid>
-
-      {nextPage && (
-        <div
-          className="flex items-center justify-center mt-6"
-          ref={nextButtonRef}
-        >
-          <Button
-            variant="secondary"
-            disabled={pending}
-            onClick={fetchProducts}
-            width="full"
-          >
-            {pending ? 'Loading...' : 'Load more products'}
-          </Button>
+    <div className="flex sticky z-50 justify-center ml-60 mr-60 ">
+      <div style={{width: '300px'}} className="sticky z-50">
+        <div className="w-full px-4 py-0">
+          <div className="py-3 px-0 border-none">
+            <span className="font-monstreat text-base font-bold text-greyColor/50 ">
+              FILTERS
+            </span>
+          </div>
+          <div>
+            <ProductFilter type="Category" />
+            <ProductFilter type="Sizes" />
+            <ProductFilter type="Brand" />
+            <ProductFilter type="Color" />
+            <ProductFilter type="Design" />
+            <ProductFilter type="Fit" />
+            <ProductFilter type="Sleeve" />
+            <ProductFilter type="Neck" />
+            <ProductFilter type="Type" />
+            <ProductFilter type="Ratings" />
+            <ProductFilter type="Discount" />
+            <ProductFilter type="Sort By" />
+          </div>
         </div>
-      )}
-    </>
+      </div>
+      <div className="w-full">
+        {/* <div className="float-right px-0 py-3 ">
+          <span className="uppercase font-monstreat text-base font-bold text-greyColor/50 px-3">
+            Sort BY
+          </span>
+          <span>
+            Popular <IconCaret />
+          </span>
+        </div> */}
+        <Grid layout="products">
+          {products.map((product, i) => (
+            <ProductCard
+              key={product.id}
+              product={product}
+              loading={getImageLoadingPriority(i)}
+            />
+          ))}
+          {nextPage && (
+            <div
+              className="flex items-center justify-center mt-6"
+              ref={nextButtonRef}
+            >
+              <Button
+                variant="secondary"
+                disabled={pending}
+                onClick={fetchProducts}
+                width="full"
+              >
+                {pending ? 'Loading...' : 'Load more products'}
+              </Button>
+            </div>
+          )}
+        </Grid>
+      </div>
+    </div>
   );
 }

@@ -4,11 +4,13 @@
 
 /* Tokens */
 :root {
-  --color-primary:0 0 0; /* Text, buttons, etc. */
+  --color-primary: 0 0 0; /* Text, buttons, etc. */
   --color-contrast: 255 255 255; /* Backgrounds, borders, etc. */
   --color-accent: 191 72 0; /* Labels like "On sale" */
-  --color-primary-button:255 216 77;
-  --color-primary-search:234 234 234;
+  --color-primary-button: 255 216 77;
+  --color-primary-search: 234 234 234;
+  --color-primary-text: 51 51 51;
+  --color-text-darkColor: 45 45 45;
   --font-size-fine: 0.75rem; /* text-xs */
   --font-size-copy: 1rem; /* text-base */
   --font-size-lead: 1.125rem; /* text-lg */
@@ -41,8 +43,10 @@
     --color-primary: 0 0 0;
     --color-contrast: 255 255 255;
     --color-accent: 235 86 40;
-    --color-primary-button:255 216 77;
-    --color-primary-search:234 234 234;
+    --color-primary-button: 255 216 77;
+    --color-primary-search: 234 234 234;
+    --color-primary-text: 51 51 51;
+    --color-text-darkColor: 45 45 45;
   }
 }
 

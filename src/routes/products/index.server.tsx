@@ -18,7 +18,7 @@ export default function AllProducts() {
   return (
     <Layout>
       <Seo type="page" data={{title: 'All Products'}} />
-      <PageHeader heading="All Products" variant="allCollections" />
+      <PageHeader heading="Printed T-Shirts for Men" variant="allCollections" />
       <Section>
         <Suspense>
           <AllProductsGrid />

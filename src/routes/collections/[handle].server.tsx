@@ -55,7 +55,7 @@ export default function Collection({params}: HydrogenRouteProps) {
       <Suspense>
         <Seo type="collection" data={collection} />
       </Suspense>
-      <PageHeader heading={collection.title}>
+      <PageHeader heading={collection.title} variant="subHeading">
         {collection?.description && (
           <div className="flex items-baseline justify-between w-full">
             <div>

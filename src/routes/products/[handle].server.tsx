@@ -1,4 +1,4 @@
-import {Suspense} from 'react';
+import {Fragment, Suspense} from 'react';
 import {
   ClientAnalytics,
   gql,
@@ -11,7 +11,7 @@ import {
   useServerAnalytics,
   useShopQuery,
   useProductOptions,
-  Money
+  Money,
 } from '@shopify/hydrogen';
 
 import {MEDIA_FRAGMENT} from '~/lib/fragments';
@@ -86,51 +86,57 @@ export default function Product() {
         <Seo type="product" data={product} />
       </Suspense>
       <ProductOptionsProvider data={product}>
-        <Section padding="x" className="px-0">
-          <div className="grid items-start  md:pt-12 md:gap-6 lg:gap-20 md:grid-cols-2 lg:grid-cols-2 w-fit">
+        <div className="flex ml-72 mr-72">
+          <div className="w-full">
             <ProductGallery
               media={media.nodes}
               className="w-screen md:w-fit "
             />
-            <div className="sticky md:-mb-nav md:top-nav md:-translate-y-nav md:h-screen md:pt-nav hiddenScroll md:overflow-y-scroll">
-              <section className="flex flex-col w-full max-w-xl gap-8  md:mx-auto md:max-w-sm md:px-0">
-                <div className="grid gap-2">
-                  <Link to="/" className='text-2xl text-slate-800 font-monstreat font-bold'>Bewakoof</Link>
-                  <span className="whitespace-normal text-zinc-500 text-lg font-monstreat font-medium">
-                   {title}
-                  </span>
-                  {vendor && (
-                    <Text className={'opacity-50 font-medium'}>{vendor}</Text>
-                  )}
-                </div>
-                <ProductPrice/>
-                <ProductForm />
-                <div className="grid gap-4 py-4">
-                  {descriptionHtml && (
-                    <ProductDetail
-                      title="Product Details"
-                      content={descriptionHtml}
-                    />
-                  )}
-                  {shippingPolicy?.body && (
-                    <ProductDetail
-                      title="Shipping"
-                      content={getExcerpt(shippingPolicy.body)}
-                      learnMore={`/policies/${shippingPolicy.handle}`}
-                    />
-                  )}
-                  {refundPolicy?.body && (
-                    <ProductDetail
-                      title="Returns"
-                      content={getExcerpt(refundPolicy.body)}
-                      learnMore={`/policies/${refundPolicy.handle}`}
-                    />
-                  )}
-                </div>
-              </section>
-            </div>
           </div>
-        </Section>
+          <div className="w-full sticky md:-mb-nav md:top-nav md:-translate-y-nav md:h-screen md:pt-nav hiddenScroll md:overflow-y-scroll">
+            <section className="flex flex-col w-full max-w-xl gap-8 px-12">
+              <div className="grid gap-2">
+                <Link
+                  to="/"
+                  className="text-2xl text-slate-800 font-monstreat font-bold"
+                >
+                  Bewakoof
+                </Link>
+                <span className="whitespace-normal text-zinc-500 text-lg font-monstreat font-medium">
+                  {title}
+                </span>
+                {/* {vendor && (
+                  <Text className={'opacity-50 font-medium'}>{vendor}</Text>
+                )} */}
+              </div>
+              <ProductPrice />
+              <ProductForm />
+              <div className="grid gap-4 py-4">
+                {descriptionHtml && (
+                  <ProductDetail
+                    title="Product Details"
+                    content={descriptionHtml}
+                  />
+                )}
+                {shippingPolicy?.body && (
+                  <ProductDetail
+                    title="Shipping"
+                    content={getExcerpt(shippingPolicy.body)}
+                    learnMore={`/policies/${shippingPolicy.handle}`}
+                  />
+                )}
+                {refundPolicy?.body && (
+                  <ProductDetail
+                    title="Returns"
+                    content={getExcerpt(refundPolicy.body)}
+                    learnMore={`/policies/${refundPolicy.handle}`}
+                  />
+                )}
+              </div>
+            </section>
+          </div>
+        </div>
+
         <Suspense>
           <ProductSwimlane title="Related Products" data={id} />
         </Suspense>

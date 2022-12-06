@@ -49,9 +49,12 @@ function OptionsGrid({
               checked={checked}
               onChange={() => handleChange(name, value)}
             />
+
             <div
               className={` leading-none py-3 px-3 rounded border border-primary cursor-pointer transition-all duration-200 ${
-                checked ? 'bg-primary text-contrast' : ' bg-contrast text-primary'
+                checked
+                  ? 'bg-primary text-contrast'
+                  : ' bg-contrast text-primary'
               }`}
             >
               {value}

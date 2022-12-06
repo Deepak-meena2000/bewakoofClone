@@ -13,7 +13,7 @@ export function ProductPrice() {
 
   return (
     <div>
-      <div>
+      <div className="flex">
         <Money
           withoutTrailingZeros
           data={selectedVariant.priceV2!}
@@ -28,7 +28,7 @@ export function ProductPrice() {
               as="span"
               className="line-through font-monstreat mr-2 text-sm text-slate-400"
             />
-            <span className="text-green-500 font-monstreat text-lg font-medium">
+            <span className="text-green-500 font-monstreat text-lg font-sem">
               {finaldiscount}% OFF
             </span>
           </div>

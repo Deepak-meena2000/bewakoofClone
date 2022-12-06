@@ -66,20 +66,20 @@ function HomepageContent() {
 
   return (
     <>
-      {primaryHero && (
+      {/* {primaryHero && (
         <Hero {...primaryHero} height="full" top loading="eager" />
-      )}
+      )} */}
       <ProductSwimlane
         data={featuredProducts.nodes}
         title="Featured Products"
         divider="bottom"
       />
-      {secondaryHero && <Hero {...secondaryHero} />}
+      {/* {secondaryHero && <Hero {...secondaryHero} />}
       <FeaturedCollections
         data={featuredCollections.nodes}
         title="Collections"
       />
-      {tertiaryHero && <Hero {...tertiaryHero} />}
+      {tertiaryHero && <Hero {...tertiaryHero} />} */}
     </>
   );
 }
@@ -99,9 +99,10 @@ function SeoForHomepage() {
     <Seo
       type="homepage"
       data={{
-        title: name,
+        title:
+          'Online Shopping for Men, Women Clothing & Accessories at Bewakoof',
         description,
-        titleTemplate: '%s · Powered by Hydrogen',
+        // titleTemplate: '%s · Powered by Hydrogen',
       }}
     />
   );

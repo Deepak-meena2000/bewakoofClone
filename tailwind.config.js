@@ -20,6 +20,8 @@ module.exports = {
         notice: withOpacityValue('--color-accent'),
         primaryButton: withOpacityValue('--color-primary-button'),
         ternary: withOpacityValue(' --color-primary-search'),
+        darkColor: withOpacityValue('  --color-primary-text'),
+        greyColor: withOpacityValue('--color-text-darkColor'),
         shopPay: 'var(--color-shop-pay)',
       },
       screens: {

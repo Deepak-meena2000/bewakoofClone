@@ -87,7 +87,7 @@ export function ProductForm() {
                 <Heading as="legend" size="lead" className="min-w-[4rem]">
                   {name}
                 </Heading>
-                <div className="flex flex-wrap items-baseline gap-4">
+                <div className="flex flex-wrap items-baseline gap-4 border-b-2 pb-6">
                   <ProductOptions
                     name={name}
                     handleChange={handleChange}
@@ -99,32 +99,42 @@ export function ProductForm() {
           })}
         </div>
       }
-      <div className="grid items-stretch gap-4">
-        <AddToCartButton
-          variantId={selectedVariant?.id}
-          quantity={1}
-          accessibleAddingToCartLabel="Adding item to your cart"
-          disabled={isOutOfStock}
-          type="button"
-        >
-          <Button
-            width="auto"
-            variant={isOutOfStock ? 'secondary' : 'ternary'}
-            as="span"
+      <div className="flex justify-between w-full ">
+        <div className="flex items-center">
+          <AddToCartButton
+            variantId={selectedVariant?.id}
+            quantity={1}
+            accessibleAddingToCartLabel="Adding item to your cart"
+            disabled={isOutOfStock}
+            type="button"
           >
-            {isOutOfStock ? (
-              <Text>Sold out</Text>
-            ) : (
-              <Text
-                as="span"
-                className="flex items-center justify-center gap-2"
-              >
-                <span>ADD TO BAG</span>
-                <IconBag />
-              </Text>
-            )}
+            <Button
+              className="w-64"
+              variant={isOutOfStock ? 'secondary' : 'ternary'}
+              as="span"
+            >
+              {isOutOfStock ? (
+                <Text>Sold out</Text>
+              ) : (
+                <Text
+                  as="span"
+                  className="flex items-center justify-center gap-2"
+                >
+                  <IconBag />
+                  <span>ADD TO BAG</span>
+                </Text>
+              )}
+            </Button>
+          </AddToCartButton>
+        </div>
+        <div className="">
+          <Button variant="secondary" className="flex  w-48">
+            <div className="flex justify-items-center pl-6 ">
+              <IconBag />
+              <span className="uppercase text-grey-500 pl-2 ">Wishlist</span>
+            </div>
           </Button>
-        </AddToCartButton>
+        </div>
       </div>
     </form>
   );
